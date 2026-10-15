@@ -1,0 +1,175 @@
+# Personal-site overlay. Keep the starter's /al-folio defaults in _config.yml.
+# Build: bundle exec jekyll build --config _config.yml,_config.personal.yml
+url: https://zamesng.github.io
+baseurl: ""
+title: Zeming (Zames) Wu
+first_name: Zeming
+middle_name: ""
+last_name: Wu
+about_nav_title: Home
+lang: en
+icon: icon-transparent.png
+description: >
+  Zeming Wu is a PhD candidate at City University of Hong Kong working on
+  distributed optimization, trajectory optimization, and motion planning for multi-agent systems.
+keywords: robotics, distributed optimization, trajectory optimization, motion planning, multi-agent systems
+contact_note: >
+  For research discussions and collaboration, please reach me by email.
+footer_text: >
+  Built with <a href="https://jekyllrb.com/">Jekyll</a> and
+  <a href="https://github.com/alshedivat/al-folio">al-folio</a>.
+max_width: 1000px
+footer_fixed: false
+serve_og_meta: true
+serve_schema_org: true
+og_image: /assets/img/zeming-wu.jpg
+posts_in_search: false
+external_sources: []
+pagination:
+  enabled: false
+related_blog_posts:
+  enabled: false
+jekyll-archives:
+  posts:
+    enabled: []
+  books:
+    enabled: []
+collections:
+  books:
+    output: false
+  news:
+    output: false
+  projects:
+    output: false
+  teachings:
+    output: false
+scholar:
+  last_name: [Wu]
+  first_name: [Zeming, Z.]
+  source: /assets/bibliography/
+  bibliography: publications.bib
+  sort_by: sortkey
+  order: ascending
+  group_by: none
+  group_order: ascending
+filtered_bibtex_keywords:
+  [
+    abbr,
+    abstract,
+    additional_info,
+    altmetric,
+    annotation,
+    arxiv,
+    award,
+    award_name,
+    bibtex_show,
+    blog,
+    code,
+    dimensions,
+    eprint,
+    google_scholar_id,
+    hal,
+    html,
+    inspirehep_id,
+    pdf,
+    pmid,
+    poster,
+    preview,
+    selected,
+    slides,
+    supp,
+    video,
+    website,
+    keywords,
+    sortkey,
+    addendum,
+    'author\+an',
+  ]
+max_author_limit: 99
+enable_publication_thumbnails: true
+enable_publication_badges:
+  altmetric: false
+  dimensions: false
+  google_scholar: false
+  inspirehep: false
+enable_math: false
+enable_masonry: false
+enable_medium_zoom: false
+enable_progressbar: false
+exclude:
+  - AGENTS.md
+  - al-folio-upgrade-report.md
+  - bin/
+  - CLAUDE.md
+  - Dockerfile
+  - docker-compose.yml
+  - docker-compose-slim.yml
+  - docs/
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - lighthouse_results/
+  - package.json
+  - package-lock.json
+  - _pages/about_einstein.md
+  - purgecss.config.js
+  - README.md
+  - readme_preview/
+  - gems/
+  - migrations/
+  - vendor
+  - _config.personal.yml
+  - cv/
+  - tmp/
+  - output/
+  - test/
+  - .devcontainer/
+  - _posts/
+  - _projects/
+  - _news/
+  - _books/
+  - _teachings/
+  - _bibliography/
+  - _pages/blog.md
+  - _pages/books.md
+  - _pages/dropdown.md
+  - _pages/news.md
+  - _pages/plugins.md
+  - _pages/profiles.md
+  - _pages/projects.md
+  - _pages/repositories.md
+  - _pages/teaching.md
+  - assets/rendercv/
+  - assets/json/
+  - assets/jupyter/
+  - assets/plotly/
+  - assets/html/
+  - assets/audio/
+  - assets/video/tutorial_al_folio.mp4
+  - assets/video/pexels-engin-akyurt-6069112-960x540-30fps.mp4
+  - assets/video/tro-2026.mp4
+  - assets/video/iros-2025.mp4
+  - assets/video/icra-2024.mp4
+  - assets/pdf/example_pdf.pdf
+  - assets/bibliography/2018-12-22-distill.bib
+  - assets/img/zeming-wu-cv.pdf
+  - assets/img/thesis-exp.gif
+  - assets/img/book_covers/
+  - assets/img/publication_preview/wave-mechanics.gif
+  - assets/img/publication_preview/brownian-motion.gif
+  - assets/img/template_error.png
+  - assets/img/rhino.png
+  - assets/img/star-history-dark.svg
+  - assets/img/star-history-light.svg
+  - assets/img/1.jpg
+  - assets/img/2.jpg
+  - assets/img/3.jpg
+  - assets/img/4.jpg
+  - assets/img/5.jpg
+  - assets/img/6.jpg
+  - assets/img/7.jpg
+  - assets/img/8.jpg
+  - assets/img/9.jpg
+  - assets/img/10.jpg
+  - assets/img/11.jpg
+  - assets/img/12.jpg

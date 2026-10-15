@@ -1,0 +1,191 @@
+/* Personal presentation tokens derived from the supplied CityUHK logo. */
+:root,
+html[data-theme="light"] {
+  --global-theme-color: #a40000;
+  --global-hover-color: #d33936;
+  --global-hover-text-color: #fff;
+  --global-highlight-color: #a40000;
+  --global-code-bg-color: #fff7f1;
+  --personal-accent-gradient: linear-gradient(100deg, #e07433, #d33936 55%, #a40000);
+}
+html[data-theme="dark"] {
+  --global-theme-color: #e07433;
+  --global-hover-color: #e07433;
+  --global-hover-text-color: #1c1c1d;
+  --global-highlight-color: #e07433;
+  --global-code-bg-color: #29231f;
+}
+.personal-block {
+  position: relative;
+  border: 1px solid var(--global-divider-color);
+  border-left: 4px solid var(--global-theme-color);
+  border-radius: 0.4rem;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  background: color-mix(in srgb, #e07433 6%, var(--global-bg-color));
+}
+.personal-block::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -4px;
+  right: -1px;
+  height: 3px;
+  border-radius: 0.4rem 0.4rem 0 0;
+  background: var(--personal-accent-gradient);
+}
+.personal-block h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+}
+.personal-block h2 i {
+  color: var(--global-theme-color);
+  margin-right: 0.4rem;
+}
+.personal-block > :last-child {
+  margin-bottom: 0;
+}
+.thesis-section {
+  margin-top: 2rem;
+}
+.thesis-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.35rem;
+}
+.thesis-preview-layout {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: start;
+  gap: 1.25rem;
+}
+.thesis-preview {
+  display: block;
+  margin-top: 0.75rem;
+}
+.thesis-preview img,
+.thesis-structure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.thesis-preview:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 3px;
+}
+.thesis-section-heading {
+  margin: 2rem 0 1.5rem;
+}
+#master-thesis {
+  scroll-margin-top: 5rem;
+}
+.thesis-structure {
+  margin: 1.25rem 0;
+}
+.thesis-structure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--global-text-color-light);
+}
+.thesis-meta {
+  color: var(--global-text-color-light);
+  font-size: 0.95rem;
+}
+.research-overview {
+  margin-bottom: 1.5rem;
+}
+.research-overview h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+}
+.research-paper,
+.thesis-card {
+  --paper-padding: 24px;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.5rem;
+  padding: 0 var(--paper-padding) var(--paper-padding);
+  margin-bottom: 24px;
+  background: color-mix(in srgb, #e07433 3%, var(--global-bg-color));
+}
+.research-paper > h2,
+.thesis-card > h2 {
+  color: #fff;
+  background: #a40000;
+  border-radius: 0.45rem 0.45rem 0 0;
+  font-size: 1.45rem;
+  line-height: 1.4;
+  padding: 1rem var(--paper-padding);
+  margin: 0 calc(-1 * var(--paper-padding)) 1rem;
+  scroll-margin-top: 5rem;
+  overflow-wrap: break-word;
+}
+.research-paper > :last-child,
+.thesis-card > :last-child {
+  margin-bottom: 0;
+}
+.research-video {
+  margin-top: 1rem;
+}
+.research-video h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.research-links {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--global-divider-color);
+}
+.publications .periodical > strong {
+  margin-inline-start: 0.25em;
+}
+.publications .bibtex.hidden {
+  min-width: 0;
+  max-width: 100%;
+}
+.publications .bibtex.hidden.open {
+  max-height: none;
+}
+.publications .bibtex figure.highlight {
+  min-width: 0;
+  max-width: 100%;
+}
+.publications .bibtex pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+}
+.publications .bibtex .code-display-wrapper {
+  min-width: 0;
+  max-width: 100%;
+}
+.publications .bibtex .copy {
+  opacity: 1;
+}
+.publications .bibtex.btn:focus-visible,
+.publications .bibtex .copy:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 3px;
+}
+.home-publications .bibtex {
+  display: none !important;
+}
+@media (max-width: 575px) {
+  .thesis-preview-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+  .thesis-preview {
+    width: min(180px, 100%);
+  }
+  .research-paper,
+  .thesis-card {
+    --paper-padding: 16px;
+  }
+  .research-paper > h2,
+  .thesis-card > h2 {
+    font-size: 1.25rem;
+  }
+  .personal-block {
+    padding: 1rem;
+  }
+}

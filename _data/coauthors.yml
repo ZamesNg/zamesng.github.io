@@ -1,34 +1,21 @@
-"adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
-
-"podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
-
-"rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
-
-"bach":
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
-
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
-
-"przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
-
-"schrodinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
-
-"lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
-
-"planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+liu:
+  - firstname: [Lu]
+    url: https://www.cityu.edu.hk/mne/people/academic-staff/mne-faculty/prof-liu-lu
+wang:
+  - firstname: [Zhuping]
+    url: https://ivcm.tongji.edu.cn/info/1100/1178.htm
+zhang:
+  - firstname: [Hao]
+    url: https://ivcm.tongji.edu.cn/info/1100/1273.htm
+hao:
+  - firstname: [Yahui]
+    url: https://teacher.nwpu.edu.cn/2026010007.html
+yan:
+  - firstname: [Huaicheng]
+    url: https://fai.shiep.edu.cn/1e/a5/c6541a269989/page.htm
+lv:
+  - firstname: [Yunkai]
+    url: https://cise.ecust.edu.cn/2026/0127/c16347a187643/page.htm
+rao:
+  - firstname: [Kai]
+    url: https://ivcm.tongji.edu.cn/info/1100/1783.htm

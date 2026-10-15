@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-15",
+  "removed_count": 11,
+  "removed_bytes": 3213293,
+  "removed": [
+    {
+      "path": "assets/img/research/tro-framework.png",
+      "bytes": 737720,
+      "sha256": "c79662cf04fcebeea806e25a77b93db81e6034352522f06da1d4e4348fe99261",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/research/iros-separating-hyperplane.png",
+      "bytes": 100023,
+      "sha256": "65ebc57aa20e099514e91d0805de0e8c395c91588709c0a251ef1a16122837ff",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/research/icra-framework.jpg",
+      "bytes": 278606,
+      "sha256": "6628c97dcecdf6cae29814d598370c502cc12bf66d12570c7805cc6461d8297c",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/research/icra-airsim.jpg",
+      "bytes": 306160,
+      "sha256": "5166c7207e1a45ad83879f57a42b9121c675755553bc1b98d45bae6bbac668b7",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/research/iros-robotarium.jpg",
+      "bytes": 112245,
+      "sha256": "5cbe78fdd97b7c121089b3c8bb665b0793585e1e042521c006534a0be68c7b60",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/research/tro-experiments.png",
+      "bytes": 1371130,
+      "sha256": "837c232e3cdd487dcdf324686b7794cb64b9084a5e271bf07d4cd17e15c08413",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/research/tro-intersection.jpg",
+      "bytes": 98420,
+      "sha256": "64c7321936e7de738ab9f734b11c3aa92c648c8f605824fc8f8e93f89cc1d7a4",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/publication_preview/icra-airsim.jpg",
+      "bytes": 79751,
+      "sha256": "b339b22476a2839c9fe85bbd94b66919c3a8264bb1b53fa8a6a5cf8452c18f13",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/publication_preview/iros-robotarium.jpg",
+      "bytes": 24355,
+      "sha256": "0039b53695bda6e3dc658993b7ed903db3ea9304bfd324bedb7015bee6a22df7",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/img/publication_preview/tro-intersection.jpg",
+      "bytes": 33370,
+      "sha256": "6eb317203be07b952854112df09f5b01a2e9a5b1b7547a25cadd17fe467159bc",
+      "reason": "Obsolete generated media"
+    },
+    {
+      "path": "assets/rendercv/rendercv_output/Albert_Einstein_CV.pdf",
+      "bytes": 71513,
+      "sha256": "0cd1f406fd4b2e1194a361af4cd01b00ca36c00135d2cd16af35e38cc9374f8d",
+      "reason": "Unused template CV output"
+    }
+  ],
+  "preserved": "Original portraits, uploaded videos, icon sources, CityUHK logo, all thesis/manuscript/CV PDFs, active thumbnails, and template media referenced by documentation or starter fixtures."
+}
