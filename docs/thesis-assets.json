@@ -1,0 +1,16 @@
+{
+  "asset": "assets/pdf/master-thesis.pdf",
+  "source_git_revision": "8a2b975366d23057996b707afdc332a3fe585493",
+  "source_git_path": "assets/pdf/master-thesis.pdf",
+  "source_sha256": "e53fcf8e43c0c8c9b51dcf0bb93d7e70f7bd820df94d33fa337d0ab64dcf61a2",
+  "sha256": "9ff3c0dcbf1d42e25ed81c90852cefdf7e0e6dfbe4e22026f5feeaafa4b85c67",
+  "source_page_count": 97,
+  "page_count": 95,
+  "removed_pdf_pages": [88, 89],
+  "removed_printed_pages": ["74", "75"],
+  "removed_section": "Acknowledgements",
+  "operation": "Select original pages 1\u201387 and 90\u201397 without re-rendering or repaginating retained pages.",
+  "all_remaining_page_content_streams_identical": true,
+  "all_remaining_pages_render_pixel_identical": true,
+  "render_check_long_edge_pixels": 500
+}
