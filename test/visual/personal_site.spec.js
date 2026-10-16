@@ -172,7 +172,7 @@ for (const route of ["/", "/research/", "/publications/", "/cv/"]) {
       const tii = page.locator("#lv_local-bearing-based_2024");
       await expect(tii.locator(".author sup")).toHaveCount(2);
       await expect(tii).not.toContainText(/Co-first authors:|equal contribution/);
-      await expect(page.locator("#wu_cooperative_2026 .periodical strong")).toHaveText("(Top-Level Robotics Journals)");
+      await expect(page.locator("#wu_cooperative_2026 .periodical strong")).toHaveText("(Top-Level Robotics Journal)");
       await expect(page.locator("#wu_gpu-accelerated_2024 .periodical strong")).toHaveText("(Flagship Robotics Conference)");
       await expect(page.locator("#wu_collision-free_2025 .periodical strong")).toHaveText("(Flagship Robotics Conference)");
       await context.grantPermissions(["clipboard-read", "clipboard-write"]);
