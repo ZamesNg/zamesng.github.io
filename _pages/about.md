@@ -107,7 +107,14 @@ Explore my [research]({{ '/research/' | relative_url }}), browse the
     script.id = "mmvst_globe";
     script.src = "https://mapmyvisitors.com/globe.js?d=4Rcygij5OrVQKp3fQNl7WyaP5RijMv5RuyWIwMLe79M";
     script.async = true;
-    script.onerror = () => container.remove();
+    const timeout = window.setTimeout(() => {
+      const globe = container.querySelector(".mmvst_inner");
+      if (!globe || window.getComputedStyle(globe).display === "none") container.remove();
+    }, 30000);
+    script.onerror = () => {
+      window.clearTimeout(timeout);
+      container.remove();
+    };
     container.append(script);
   })();
 </script>
