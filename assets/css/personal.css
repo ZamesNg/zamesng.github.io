@@ -179,12 +179,12 @@ html[data-theme="dark"] {
   margin: 0 0 1rem;
   font-size: 1.15rem;
 }
-.visitor-globe {
+.visitor-map {
   width: min(240px, 100%);
-  min-height: 270px;
+  min-height: 160px;
   margin: 0 auto;
 }
-.visitor-globe:empty {
+.visitor-map:empty {
   display: none;
 }
 .visitor-section p {

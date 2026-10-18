@@ -94,22 +94,22 @@ Explore my [research]({{ '/research/' | relative_url }}), browse the
 </section>
 <section class="visitor-section" aria-labelledby="visitors-heading">
 <h2 id="visitors-heading">Visitors</h2>
-<div class="visitor-globe" aria-label="Approximate geographic distribution of homepage visitors"></div>
+<div class="visitor-map" aria-label="Approximate geographic distribution of homepage visitors"></div>
 <p><a href="https://mapmyvisitors.com/">Visitor statistics by MapMyVisitors</a></p>
-<noscript><p>JavaScript is required to display the visitor globe.</p></noscript>
+<noscript><p>JavaScript is required to display the visitor map.</p></noscript>
 {% if jekyll.environment == 'production' %}
 <script>
   (() => {
     if (window.location.origin !== "https://zamesng.github.io") return;
-    const container = document.querySelector(".visitor-globe");
-    if (!container || document.getElementById("mmvst_globe")) return;
+    const container = document.querySelector(".visitor-map");
+    if (!container || document.getElementById("mapmyvisitors")) return;
     const script = document.createElement("script");
-    script.id = "mmvst_globe";
-    script.src = "https://mapmyvisitors.com/globe.js?d=4Rcygij5OrVQKp3fQNl7WyaP5RijMv5RuyWIwMLe79M";
+    script.id = "mapmyvisitors";
+    script.src = "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=ffffff&w=a";
     script.async = true;
     const timeout = window.setTimeout(() => {
-      const globe = container.querySelector(".mmvst_inner");
-      if (!globe || window.getComputedStyle(globe).display === "none") container.remove();
+      const map = container.querySelector("#mapmyvisitors-widget");
+      if (!map || container.querySelector(".mapmyvisitors-loading")) container.remove();
     }, 30000);
     script.onerror = () => {
       window.clearTimeout(timeout);
