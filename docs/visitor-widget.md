@@ -1,37 +1,35 @@
-# Homepage visitor map
+# Homepage visitor map and contact links
 
-The Home page embeds the MapMyVisitors flat map after the thesis section. It uses
-the public widget ID supplied by the site owner, an HTTPS script URL with the
-CityUHK-inspired colors and automatic sizing (`w=a`), and a centered 240 px responsive container. Only
-visits that load Home are counted; the other three pages do not load the widget.
+Home ends with an unlabeled map and contact area below the thesis, without a
+separate attribution paragraph. Desktop uses a map up to
+420 px wide on the left and six icon-only links in three columns and two rows on
+the right. The icon grid is compact, with 64 px icons on desktop and 60 px on
+mobile. Their body areas share the same grid row and height. Mobile stacks the
+map above the same icon grid. The visit count and date share one centered line, joined by “during”.
+The portrait no longer has a duplicate icon row.
 
-The homepage loader is emitted only by production Jekyll builds and runs only at
-`https://zamesng.github.io`. Local previews and alternate hosts do not contact
-MapMyVisitors. A standalone helper document loads the provider asynchronously
-inside a sandboxed iframe. Direct visits to the helper do not start tracking.
-The parent verifies status messages against the iframe's window and resizes the
-frame to its content. Script failures or missing ready messages after 30 seconds
-remove the reserved space while leaving the attribution link available.
-The provider manages geographic
-estimates, statistics, map appearance, and dependencies. The surrounding section
-follows the site's theme. The map uses deep red (`co=a40000`), warm-white land
-(`cl=fff3e8`), white labels (`ct=ffffff`), orange new-visitor markers
-(`cmn=e07433`), and light-orange previous-visitor markers (`cmo=f7b58c`).
+The map ocean uses the actual page background. Both themes use orange land
+(`#e07433`), matching the contact icons in both themes. Labels use the page text color. New and previous visitor markers use cyan (`cmn=00e5ff`) and yellow
+(`cmo=ffe066`). Initial colors are passed to the isolated helper in its URL.
+Subsequent theme messages update CSS and the generated background image URL,
+without loading another provider script or data request.
 
-Browser tests intercept provider traffic and serve production HTML under a
-simulated production origin. They verify one-time loading, placement, responsive
-sizing, script/data failure behavior, and absence of tracking on local previews or
-other pages without sending test visits to the live counter.
+The homepage loader is emitted only in production builds at
+`https://zamesng.github.io`. Local previews and direct helper visits do not start
+tracking. The sandbox permits scripts and user-initiated top navigation, omits
+`allow-same-origin`, and contains the provider's required `unsafe-eval` allowance.
+The main page CSP remains unchanged. Messages are checked against the exact
+iframe or parent window; the helper also checks the parent origin and validates
+all colors as six-digit hex values. Its resize reports keep the frame fitted.
+Failures or a missing ready message after 30 seconds remove only the map area.
 
-The provider evaluates its JSONP payload with `eval`, which the main site's CSP
-blocks. Only the isolated helper document permits `unsafe-eval`; the main CSP is
-unchanged. The iframe allows scripts and user-initiated top navigation for the
-statistics link, and deliberately omits `allow-same-origin`. Tests exercise an
-evaluated provider payload and reject status messages from other windows.
+Browser checks intercept provider traffic and exercise layout, theme changes
+without recounting, accessible links, the CSP boundary, source validation,
+responsive dimensions, and failure behavior. Local rendered previews may replay
+an ignored cached provider response; labeled sample-point illustrations never
+change real statistics. Source changes are kept local until the owner approves
+publication.
 
-## Replacement of the globe
-
-The original globe's data requests returned HTML instead of JSONP for the supplied
-ID. On 18 October 2026 the owner supplied a new flat-map code and ID. Its
-`/widget_call_home.js` response successfully returned JSONP during verification.
-The flat map replaces the globe; no extra globe or secondary tracker is loaded.
+The earlier globe was replaced with the owner's working flat-map ID after its
+data endpoint returned HTML. The active widget's statistics page is
+https://mapmyvisitors.com/web/1c8y5.

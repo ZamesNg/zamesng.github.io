@@ -137,11 +137,8 @@ for (const route of ["/", "/research/", "/publications/", "/cv/"]) {
           return style.boxShadow !== "none" || (style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0);
         })
       ).toBe(true);
-      const placement = await page.locator(".profile").evaluate((profile) => ({
-        imageBottom: profile.querySelector("img").parentElement.getBoundingClientRect().bottom,
-        linksTop: profile.querySelector("nav").getBoundingClientRect().top,
-      }));
-      expect(placement.linksTop).toBeGreaterThanOrEqual(placement.imageBottom);
+      await expect(page.locator(".profile nav")).toHaveCount(0);
+      await expect(page.locator(".visitor-section .profile-links")).toHaveCount(1);
       await scholar.blur();
     }
     if (route === "/publications/") {

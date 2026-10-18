@@ -17,6 +17,35 @@
       }
       #map-container {
         width: 100%;
+        color: var(--visitor-foreground);
+      }
+      #map-container .mapmyvisitors-map-container {
+        background-color: var(--visitor-background) !important;
+        text-align: center;
+      }
+      #map-container .mapmyvisitors-visitors,
+      #map-container .mapmyvisitors-date {
+        color: var(--visitor-foreground) !important;
+        display: inline-block;
+        width: auto !important;
+        white-space: nowrap;
+        vertical-align: top;
+      }
+      #map-container .mapmyvisitors-date {
+        margin-left: 4px;
+      }
+      #map-container .mapmyvisitors-date:not(:empty)::before {
+        content: "during ";
+        text-transform: none;
+      }
+      #map-container #mapmyvisitors-widget {
+        width: 100% !important;
+      }
+      #map-container .mapmyvisitors-map {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 2.04;
+        background-size: 100% 100%;
       }
     </style>
   </head>
@@ -26,18 +55,60 @@
       (() => {
         if (window.location.origin !== "https://zamesng.github.io" || window.parent === window) return;
         const container = document.getElementById("map-container");
+        const validColor = (value) => typeof value === "string" && /^[0-9a-f]{6}$/i.test(value);
+        const validateTheme = (value) =>
+          value && ["light", "dark"].includes(value.mode) && [value.background, value.foreground, value.land].every(validColor);
+        const initial = Object.fromEntries(new URLSearchParams(window.location.search));
+        let theme = validateTheme(initial) ? initial : { mode: "light", background: "ffffff", foreground: "1c1c1d", land: "e07433" };
+        const applyTheme = () => {
+          document.documentElement.dataset.theme = theme.mode;
+          document.documentElement.style.backgroundColor = "#" + theme.background;
+          document.body.style.backgroundColor = "#" + theme.background;
+          container.style.setProperty("--visitor-background", "#" + theme.background);
+          container.style.setProperty("--visitor-foreground", "#" + theme.foreground);
+          const map = container.querySelector(".mapmyvisitors-map");
+          const image = map && window.getComputedStyle(map).backgroundImage.match(/^url\(["']?(.*?)["']?\)$/);
+          if (!image) return;
+          const url = new URL(image[1], window.location.href);
+          url.pathname = url.pathname.replace(/-co_[0-9a-f]{6}/i, "-co_" + theme.background).replace(/-cl_[0-9a-f]{6}/i, "-cl_" + theme.land);
+          map.style.backgroundImage = `url("${url.href}")`;
+        };
+        window.addEventListener("message", (event) => {
+          if (
+            event.source !== window.parent ||
+            event.origin !== "https://zamesng.github.io" ||
+            event.data?.type !== "visitor-map-theme" ||
+            !validateTheme(event.data)
+          )
+            return;
+          theme = event.data;
+          applyTheme();
+        });
+        applyTheme();
         const report = (state, height) => window.parent.postMessage({ type: "visitor-map-status", state, height }, "https://zamesng.github.io");
         const observer = new MutationObserver(() => {
           const map = document.getElementById("mapmyvisitors-widget");
           if (!map || document.querySelector(".mapmyvisitors-loading")) return;
           observer.disconnect();
-          report("ready", Math.ceil(map.getBoundingClientRect().height));
+          applyTheme();
+          const reportSize = () => report("ready", Math.ceil(map.getBoundingClientRect().height));
+          new ResizeObserver(reportSize).observe(map);
+          reportSize();
         });
         observer.observe(container, { childList: true, subtree: true });
         const script = document.createElement("script");
         script.id = "mapmyvisitors";
-        script.src =
-          "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=fff3e8&co=a40000&ct=ffffff&cmn=e07433&cmo=f7b58c&w=a";
+        const url = new URL("https://mapmyvisitors.com/map.js");
+        url.search = new URLSearchParams({
+          d: "cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y",
+          cl: theme.land,
+          co: theme.background,
+          ct: theme.foreground,
+          cmn: "00e5ff",
+          cmo: "ffe066",
+          w: "a",
+        });
+        script.src = url.href;
         script.async = true;
         script.onerror = () => {
           observer.disconnect();

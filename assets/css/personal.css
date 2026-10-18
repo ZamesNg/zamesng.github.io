@@ -170,17 +170,18 @@ html[data-theme="dark"] {
   display: none !important;
 }
 .visitor-section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas: "map links";
+  column-gap: 48px;
   margin-top: 3rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--global-divider-color);
   text-align: center;
 }
-.visitor-section h2 {
-  margin: 0 0 1rem;
-  font-size: 1.15rem;
-}
 .visitor-map {
-  width: min(240px, 100%);
+  grid-area: map;
+  width: min(420px, 100%);
   min-height: 160px;
   margin: 0 auto;
 }
@@ -192,13 +193,56 @@ html[data-theme="dark"] {
   width: 100%;
   border: 0;
 }
-.visitor-section p {
-  font-size: 0.8rem;
-  color: var(--global-text-color-light);
+.footer-profile-links {
+  grid-area: links;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 88px));
+  grid-template-rows: repeat(2, 88px);
+  gap: 16px;
+  place-content: center;
+  width: min(296px, 100%);
+  justify-self: center;
+  align-items: center;
+  justify-items: center;
+  min-height: 216px;
+  margin: 0;
+}
+.footer-profile-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.35rem;
+  color: #e07433;
+  font-size: 64px;
+  line-height: 1;
 }
 .visitor-section a:focus-visible {
   outline: 2px solid var(--global-theme-color);
   outline-offset: 3px;
+}
+@media (max-width: 767px) {
+  .visitor-section {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "map" "links";
+    row-gap: 24px;
+    column-gap: 0;
+  }
+  .footer-profile-links {
+    width: min(264px, 100%);
+    grid-template-columns: repeat(3, minmax(0, 80px));
+    grid-template-rows: repeat(2, 80px);
+    gap: 12px;
+    min-height: 172px;
+  }
+  .footer-profile-links a {
+    width: 80px;
+    height: 80px;
+    font-size: 60px;
+  }
 }
 @media (max-width: 575px) {
   .thesis-preview-layout {

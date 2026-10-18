@@ -32,14 +32,7 @@ permalink: /
   <div class="rounded z-depth-1" style="position: relative; aspect-ratio: 4 / 5; overflow: hidden;">
     <img src="{{ '/assets/img/zeming-wu.jpg' | relative_url }}" alt="Zeming Wu beside the coast" width="2080" height="3120" style="position: absolute; width: 260%; max-width: none; height: auto; left: -75%; top: -115%;">
   </div>
-  <nav class="profile-links" aria-label="Contact and academic profiles" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem; margin-top: 0.6rem; font-size: 1.5rem;">
-    <a href="mailto:{{ site.data.socials.email }}" aria-label="Email" title="Email" style="display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; margin: 0; padding: 0; border-radius: 0.25rem; font-size: inherit;"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-    <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}" aria-label="Google Scholar" title="Google Scholar" style="display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; margin: 0; padding: 0; border-radius: 0.25rem; font-size: inherit;"><i class="ai ai-google-scholar" aria-hidden="true"></i></a>
-    <a href="https://github.com/{{ site.data.socials.github_username }}" aria-label="GitHub" title="GitHub" style="display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; margin: 0; padding: 0; border-radius: 0.25rem; font-size: inherit;"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-    <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" aria-label="LinkedIn" title="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; margin: 0; padding: 0; border-radius: 0.25rem; font-size: inherit;"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-    <a href="https://orcid.org/{{ site.data.socials.orcid_id }}" aria-label="ORCID" title="ORCID" style="display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; margin: 0; padding: 0; border-radius: 0.25rem; font-size: inherit;"><i class="ai ai-orcid" aria-hidden="true"></i></a>
-    <a href="{{ site.data.socials.cv_pdf | relative_url }}" aria-label="Download CV" title="Download CV" style="display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; margin: 0; padding: 0; border-radius: 0.25rem; font-size: inherit;"><i class="ai ai-cv" aria-hidden="true"></i></a>
-  </nav>
+
 </div>
 
 <div class="home-bio" markdown="1">
@@ -92,10 +85,16 @@ Explore my [research]({{ '/research/' | relative_url }}), browse the
 </div>
 </div>
 </section>
-<section class="visitor-section" aria-labelledby="visitors-heading">
-<h2 id="visitors-heading">Visitors</h2>
+<section class="visitor-section home-footer-contact" aria-label="Visitor map and contact profiles">
 <div class="visitor-map" aria-label="Approximate geographic distribution of homepage visitors"></div>
-<p><a href="https://mapmyvisitors.com/">Visitor statistics by MapMyVisitors</a></p>
+  <nav class="profile-links footer-profile-links" aria-label="Contact and academic profiles">
+    <a href="mailto:{{ site.data.socials.email }}" aria-label="Email" title="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+    <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}" aria-label="Google Scholar" title="Google Scholar"><i class="ai ai-google-scholar" aria-hidden="true"></i></a>
+    <a href="https://github.com/{{ site.data.socials.github_username }}" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+    <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+    <a href="https://orcid.org/{{ site.data.socials.orcid_id }}" aria-label="ORCID" title="ORCID"><i class="ai ai-orcid" aria-hidden="true"></i></a>
+    <a href="{{ site.data.socials.cv_pdf | relative_url }}" aria-label="Download CV" title="Download CV"><i class="ai ai-cv" aria-hidden="true"></i></a>
+  </nav>
 <noscript><p>JavaScript is required to display the visitor map.</p></noscript>
 {% if jekyll.environment == 'production' %}
 <script>
@@ -103,16 +102,31 @@ Explore my [research]({{ '/research/' | relative_url }}), browse the
     if (window.location.origin !== "https://zamesng.github.io") return;
     const container = document.querySelector(".visitor-map");
     if (!container || document.getElementById("visitor-map-frame")) return;
+    const readColor = (property) => {
+      const probe = document.createElement("span");
+      probe.style.cssText = `position:absolute;visibility:hidden;color:var(${property})`;
+      document.body.append(probe);
+      const channels = window.getComputedStyle(probe).color.match(/\d+/g).slice(0, 3);
+      probe.remove();
+      return channels.map((value) => Number(value).toString(16).padStart(2, "0")).join("");
+    };
+    const readTheme = () => {
+      const mode = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      return { mode, background: readColor("--global-bg-color"), foreground: readColor("--global-text-color"), land: "e07433" };
+    };
     const frame = document.createElement("iframe");
     frame.id = "visitor-map-frame";
     frame.title = "Homepage visitor map";
-    frame.width = "240";
-    frame.height = "180";
+    frame.width = "420";
+    frame.height = "260";
     frame.setAttribute("sandbox", "allow-scripts allow-top-navigation-by-user-activation");
-    frame.src = "{{ '/assets/visitor-map.html' | relative_url }}";
+    frame.src = "{{ '/assets/visitor-map.html' | relative_url }}?" + new URLSearchParams(readTheme());
+    const sendTheme = () => frame.contentWindow?.postMessage({ type: "visitor-map-theme", ...readTheme() }, "*");
+    const themeObserver = new MutationObserver(sendTheme);
     const removeMap = () => {
       window.clearTimeout(timeout);
       window.removeEventListener("message", onMapStatus);
+      themeObserver.disconnect();
       container.remove();
     };
     const onMapStatus = (event) => {
@@ -120,12 +134,13 @@ Explore my [research]({{ '/research/' | relative_url }}), browse the
       if (event.data.state === "error") return removeMap();
       if (event.data.state !== "ready") return;
       window.clearTimeout(timeout);
-      window.removeEventListener("message", onMapStatus);
       frame.dataset.ready = "true";
       if (Number.isFinite(event.data.height)) frame.height = Math.ceil(Math.min(400, Math.max(120, event.data.height)));
     };
     const timeout = window.setTimeout(removeMap, 30000);
     window.addEventListener("message", onMapStatus);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    frame.addEventListener("load", sendTheme);
     frame.onerror = removeMap;
     container.append(frame);
   })();
