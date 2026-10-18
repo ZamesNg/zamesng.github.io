@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' https:; style-src 'unsafe-inline' https:; img-src data: https:; font-src data: https:; connect-src https:; base-uri 'none'; form-action 'none';"
+    />
+    <title>Homepage visitor map</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+      #map-container {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map-container"></div>
+    <script>
+      (() => {
+        if (window.location.origin !== "https://zamesng.github.io" || window.parent === window) return;
+        const container = document.getElementById("map-container");
+        const report = (state, height) => window.parent.postMessage({ type: "visitor-map-status", state, height }, "https://zamesng.github.io");
+        const observer = new MutationObserver(() => {
+          const map = document.getElementById("mapmyvisitors-widget");
+          if (!map || document.querySelector(".mapmyvisitors-loading")) return;
+          observer.disconnect();
+          report("ready", Math.ceil(map.getBoundingClientRect().height));
+        });
+        observer.observe(container, { childList: true, subtree: true });
+        const script = document.createElement("script");
+        script.id = "mapmyvisitors";
+        script.src = "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=ffffff&w=a";
+        script.async = true;
+        script.onerror = () => {
+          observer.disconnect();
+          report("error");
+        };
+        container.append(script);
+      })();
+    </script>
+  </body>
+</html>

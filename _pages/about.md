@@ -102,20 +102,32 @@ Explore my [research]({{ '/research/' | relative_url }}), browse the
   (() => {
     if (window.location.origin !== "https://zamesng.github.io") return;
     const container = document.querySelector(".visitor-map");
-    if (!container || document.getElementById("mapmyvisitors")) return;
-    const script = document.createElement("script");
-    script.id = "mapmyvisitors";
-    script.src = "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=ffffff&w=a";
-    script.async = true;
-    const timeout = window.setTimeout(() => {
-      const map = container.querySelector("#mapmyvisitors-widget");
-      if (!map || container.querySelector(".mapmyvisitors-loading")) container.remove();
-    }, 30000);
-    script.onerror = () => {
+    if (!container || document.getElementById("visitor-map-frame")) return;
+    const frame = document.createElement("iframe");
+    frame.id = "visitor-map-frame";
+    frame.title = "Homepage visitor map";
+    frame.width = "240";
+    frame.height = "180";
+    frame.setAttribute("sandbox", "allow-scripts allow-top-navigation-by-user-activation");
+    frame.src = "{{ '/assets/visitor-map.html' | relative_url }}";
+    const removeMap = () => {
       window.clearTimeout(timeout);
+      window.removeEventListener("message", onMapStatus);
       container.remove();
     };
-    container.append(script);
+    const onMapStatus = (event) => {
+      if (event.source !== frame.contentWindow || event.data?.type !== "visitor-map-status") return;
+      if (event.data.state === "error") return removeMap();
+      if (event.data.state !== "ready") return;
+      window.clearTimeout(timeout);
+      window.removeEventListener("message", onMapStatus);
+      frame.dataset.ready = "true";
+      if (Number.isFinite(event.data.height)) frame.height = Math.ceil(Math.min(400, Math.max(120, event.data.height)));
+    };
+    const timeout = window.setTimeout(removeMap, 30000);
+    window.addEventListener("message", onMapStatus);
+    frame.onerror = removeMap;
+    container.append(frame);
   })();
 </script>
 {% endif %}
