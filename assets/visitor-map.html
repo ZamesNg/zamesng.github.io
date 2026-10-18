@@ -36,7 +36,8 @@
         observer.observe(container, { childList: true, subtree: true });
         const script = document.createElement("script");
         script.id = "mapmyvisitors";
-        script.src = "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=ffffff&w=a";
+        script.src =
+          "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=fff3e8&co=a40000&ct=ffffff&cmn=e07433&cmo=f7b58c&w=a";
         script.async = true;
         script.onerror = () => {
           observer.disconnect();

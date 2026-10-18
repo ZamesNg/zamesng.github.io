@@ -3,7 +3,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const productionOrigin = "https://zamesng.github.io";
-const widgetUrl = "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=ffffff&w=a";
+const widgetUrl =
+  "https://mapmyvisitors.com/map.js?d=cGqGU6zkTTfrtKO8TyYTcdzV9cK16rlZUBjIc2K392Y&cl=fff3e8&co=a40000&ct=ffffff&cmn=e07433&cmo=f7b58c&w=a";
 
 test.beforeEach(async ({ page }, testInfo) => {
   await page.addInitScript((theme) => {
@@ -26,7 +27,7 @@ test("homepage map loads once at the production origin and fits its section", as
   const widgetRequests = [];
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  const payload = `document.getElementById("mapmyvisitors").insertAdjacentHTML("afterend", '<div id="mapmyvisitors-widget" data-testid="map-stub" style="width:100%;aspect-ratio:2.04;border-radius:0.25rem;background:#2d78ad"></div>');`;
+  const payload = `document.getElementById("mapmyvisitors").insertAdjacentHTML("afterend", '<div id="mapmyvisitors-widget" data-testid="map-stub" style="width:100%;aspect-ratio:2.04;border-radius:0.25rem;background:#a40000"></div>');`;
   await page.route("https://mapmyvisitors.com/**", async (route) => {
     widgetRequests.push(route.request().url());
     await route.fulfill({

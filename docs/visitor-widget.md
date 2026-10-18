@@ -2,7 +2,7 @@
 
 The Home page embeds the MapMyVisitors flat map after the thesis section. It uses
 the public widget ID supplied by the site owner, an HTTPS script URL with the
-supplied `cl=ffffff&w=a` options, and a centered 240 px responsive container. Only
+CityUHK-inspired colors and automatic sizing (`w=a`), and a centered 240 px responsive container. Only
 visits that load Home are counted; the other three pages do not load the widget.
 
 The homepage loader is emitted only by production Jekyll builds and runs only at
@@ -14,7 +14,9 @@ frame to its content. Script failures or missing ready messages after 30 seconds
 remove the reserved space while leaving the attribution link available.
 The provider manages geographic
 estimates, statistics, map appearance, and dependencies. The surrounding section
-follows the site's theme.
+follows the site's theme. The map uses deep red (`co=a40000`), warm-white land
+(`cl=fff3e8`), white labels (`ct=ffffff`), orange new-visitor markers
+(`cmn=e07433`), and light-orange previous-visitor markers (`cmo=f7b58c`).
 
 Browser tests intercept provider traffic and serve production HTML under a
 simulated production origin. They verify one-time loading, placement, responsive
