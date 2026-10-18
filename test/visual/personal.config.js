@@ -2,7 +2,7 @@ const { defineConfig } = require("@playwright/test");
 
 module.exports = defineConfig({
   testDir: __dirname,
-  testMatch: "personal_site.spec.js",
+  testMatch: ["personal_site.spec.js", "visitor_widget.spec.js"],
   outputDir: "../../output/playwright-personal",
   workers: 1,
   timeout: 45000,

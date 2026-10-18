@@ -169,6 +169,32 @@ html[data-theme="dark"] {
 .home-publications .bibtex {
   display: none !important;
 }
+.visitor-section {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--global-divider-color);
+  text-align: center;
+}
+.visitor-section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+.visitor-globe {
+  width: min(240px, 100%);
+  min-height: 270px;
+  margin: 0 auto;
+}
+.visitor-globe:empty {
+  display: none;
+}
+.visitor-section p {
+  font-size: 0.8rem;
+  color: var(--global-text-color-light);
+}
+.visitor-section a:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 3px;
+}
 @media (max-width: 575px) {
   .thesis-preview-layout {
     grid-template-columns: minmax(0, 1fr);

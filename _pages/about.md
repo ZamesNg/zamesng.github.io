@@ -92,4 +92,25 @@ Explore my [research]({{ '/research/' | relative_url }}), browse the
 </div>
 </div>
 </section>
+<section class="visitor-section" aria-labelledby="visitors-heading">
+<h2 id="visitors-heading">Visitors</h2>
+<div class="visitor-globe" aria-label="Approximate geographic distribution of homepage visitors"></div>
+<p><a href="https://mapmyvisitors.com/">Visitor statistics by MapMyVisitors</a></p>
+<noscript><p>JavaScript is required to display the visitor globe.</p></noscript>
+{% if jekyll.environment == 'production' %}
+<script>
+  (() => {
+    if (window.location.origin !== "https://zamesng.github.io") return;
+    const container = document.querySelector(".visitor-globe");
+    if (!container || document.getElementById("mmvst_globe")) return;
+    const script = document.createElement("script");
+    script.id = "mmvst_globe";
+    script.src = "https://mapmyvisitors.com/globe.js?d=4Rcygij5OrVQKp3fQNl7WyaP5RijMv5RuyWIwMLe79M";
+    script.async = true;
+    script.onerror = () => container.remove();
+    container.append(script);
+  })();
+</script>
+{% endif %}
+</section>
 </div>
